@@ -17,8 +17,16 @@ function playSound(event) {
   audio.currentTime = 0; // rewinds to the start
   audio.play();
 
+  key.classList.add('playing');
   // console.log(key);
-}
+  // there is also .remove and .toggle for classList same as jquery key.addClass('playing')
+};
+  function removeTransition(e) {
+    // console.log(e);
+    if(e.propertyName !== 'transition')return; //skip it if it's not a transition
+  }
+  const keys = document.querySelectorAll('.key'); // gives an array like object of all the matching classes
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
 
 
