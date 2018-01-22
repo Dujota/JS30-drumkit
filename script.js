@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(e) {
 
-window.addEventListener('keydown', function(event) {
-  playSound(event);
-});
+window.addEventListener('keydown', playSound);
+
 
 function playSound(event) {
   // console.log(event);
@@ -23,7 +22,9 @@ function playSound(event) {
 };
   function removeTransition(e) {
     // console.log(e);
-    if(e.propertyName !== 'transition')return; //skip it if it's not a transition
+    if(e.propertyName !== 'transform')return; //skip it if it's not a transform
+    console.log(e.propertyName);
+    this.classList.remove('playing')
   }
   const keys = document.querySelectorAll('.key'); // gives an array like object of all the matching classes
   keys.forEach(key => key.addEventListener('transitionend', removeTransition));
